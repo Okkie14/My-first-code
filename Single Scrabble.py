@@ -45,7 +45,7 @@ def score(word_list):
 def top_five():
     all_scores = []
 
-    with open(r'C:\Users\okker\Documents\Personal\Coding\Programmes\Single Scrabble\scoreboard.csv', newline = '') as csvfile:
+    with open(r'scoreboard.csv', newline = '') as csvfile:
         scores = csv.reader(csvfile)
 
         for row in scores:
@@ -64,7 +64,7 @@ def game_play():
         word = input()
         t.sleep(2)
         #Scrabbel Dictionary to see if you played a valid word
-        with open(r'C:\Users\okker\Documents\Personal\Coding\Programmes\Single Scrabble\scrabble_dictionary.txt','r') as s_dict:
+        with open(r'scrabble_dictionary.txt','r') as s_dict:
             if word.upper() in s_dict.read():
                 if word[0].upper() == your_letter:
                     print(words_played(word))
@@ -86,7 +86,7 @@ def game_play():
         else:
             continue
         
-        with open(r'C:\Users\okker\Documents\Personal\Coding\Programmes\Single Scrabble\scoreboard.csv', 'a', newline='\n') as f:
+        with open(r'scoreboard.csv', 'a', newline='\n') as f:
             writer = csv.writer(f)
             writer.writerow([int(counter), player])
 
