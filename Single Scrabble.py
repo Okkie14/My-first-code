@@ -67,24 +67,31 @@ def game_play():
         with open(r'scrabble_dictionary.txt','r') as s_dict:
             if word.upper() in s_dict.read():
                 if word[0].upper() == your_letter:
-                    print(words_played(word))
-                    score(word_list)
-                    print('Current score is ' + str(player_score))
-                    t.sleep(1)
+                    if word.upper() not in word_list:
+                        print(words_played(word))
+                        score(word_list)
+                        print('Current score is ' + str(player_score))
+                        t.sleep(1)
+                        counter += 1
+                    else:
+                        print('You have already played that word!')
+                        counter += 1
                 else:
                     print('Your word did not start with the correct letter')
+                    counter += 1
                     continue
             else:
                 print('That is not a real word')
+                counter += 1
                 continue
-        counter += 1
-        if player_score >= 150:
-            print('It took ' + str(counter) + ' turns to win the game')
-            t.sleep(2)
-            top_five()
+                
+            if player_score >= 150:
+                print('It took ' + str(counter) + ' turns to win the game')
+                t.sleep(2)
+                top_five()
 
-        else:
-            continue
+            else:
+                continue
         
         with open(r'scoreboard.csv', 'a', newline='\n') as f:
             writer = csv.writer(f)
